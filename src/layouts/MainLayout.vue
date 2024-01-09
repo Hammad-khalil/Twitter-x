@@ -10,38 +10,41 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
+    <q-drawer
+      v-model="leftDrawerOpen"
+      :width="283"
+      side="left"
+      bordered
+      show-if-above
+    >
       <q-icon name="fa-brands fa-square-x-twitter" class="q-pa-md" size="md" />
       <!-- // Home here => -->
-      <div class="q-pa-md" style="max-width: 350px">
-        <q-list bordered>
-          <q-item clickable v-ripple to="/">
-            <q-item-section avatar>
-              <q-icon color="primary" name="home" />
-            </q-item-section>
+      <q-list>
+        <q-item clickable v-ripple to="/">
+          <q-item-section avatar>
+            <q-icon color="primary" name="home" />
+          </q-item-section>
 
-            <q-item-section class="text-h6 text-weight-bold" size="md"
-              >Home</q-item-section
-            >
-          </q-item>
-        </q-list>
-      </div>
+          <q-item-section class="text-h6 text-weight-bold" size="md"
+            >Home</q-item-section
+          >
+        </q-item>
+      </q-list>
+
       <!-- // Home Ends Here
 
         // About here => -->
-      <div class="q-pa-md" style="max-width: 350px">
-        <q-list bordered>
-          <q-item clickable v-ripple to="/about">
-            <q-item-section avatar>
-              <q-icon color="primary" name="info" />
-            </q-item-section>
+      <q-list>
+        <q-item clickable v-ripple to="/about">
+          <q-item-section avatar>
+            <q-icon color="primary" name="info" />
+          </q-item-section>
 
-            <q-item-section class="text-h6 text-weight-bold" size="md"
-              >About us</q-item-section
-            >
-          </q-item>
-        </q-list>
-      </div>
+          <q-item-section class="text-h6 text-weight-bold" size="md"
+            >About us</q-item-section
+          >
+        </q-item>
+      </q-list>
       <!-- // About Ends Here -->
     </q-drawer>
 
