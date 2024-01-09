@@ -17,7 +17,12 @@
       bordered
       show-if-above
     >
-      <q-icon name="fa-brands fa-square-x-twitter" class="q-pa-md" size="md" />
+      <q-icon
+        color="primary"
+        name="fa-brands fa-square-x-twitter"
+        class="q-pa-md"
+        size="md"
+      />
       <!-- // Home here => -->
       <q-list>
         <q-item clickable v-ripple to="/">
@@ -49,7 +54,11 @@
     </q-drawer>
 
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
-      <!-- drawer content -->
+      <q-input placeholder="Search X" outlined rounded class="q-ma-md">
+        <template v-slot:prepend>
+          <q-icon name="search" />
+        </template>
+      </q-input>
     </q-drawer>
 
     <q-page-container>
