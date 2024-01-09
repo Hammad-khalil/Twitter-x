@@ -54,11 +54,71 @@
     </q-drawer>
 
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
+      <!-- searchbar here  -->
       <q-input placeholder="Search X" outlined rounded class="q-ma-md">
         <template v-slot:prepend>
           <q-icon name="search" />
         </template>
       </q-input>
+
+      <!-- Blog Start here -->
+      <q-list padding separator>
+        <q-item>
+          <q-item-section>
+            <q-item-label class="text-grey" overline>Education</q-item-label>
+            <q-item-label class="text-weight-bold"
+              >Something Amazing Happened !!!</q-item-label
+            >
+            <q-item-label caption
+              >Secondary line text. Lorem ipsum dolor sit amet, consectetur
+              adipiscit elit.</q-item-label
+            >
+          </q-item-section>
+          <q-item-section side top>
+            <q-item-label caption>5 min ago</q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <!-- Blog Ended here -->
+
+      <!-- Blog 2 Start here -->
+      <q-list padding>
+        <q-item>
+          <q-item-section>
+            <q-item-label class="text-grey" overline>Education</q-item-label>
+            <q-item-label class="text-weight-bold"
+              >Something Amazing Happened !!!</q-item-label
+            >
+            <q-item-label caption
+              >Secondary line text. Lorem ipsum dolor sit amet, consectetur
+              adipiscit elit.</q-item-label
+            >
+          </q-item-section>
+          <q-item-section side top>
+            <q-item-label caption>15 min ago</q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <!-- Blog 2 Ended here -->
+      <!-- Blog 3 Start here -->
+      <q-list padding>
+        <q-item class="q-pa-md">
+          <q-item-section>
+            <q-item-label class="text-grey" overline>Education</q-item-label>
+            <q-item-label class="text-weight-bold"
+              >Something Amazing Happened !!!</q-item-label
+            >
+            <q-item-label caption
+              >Secondary line text. Lorem ipsum dolor sit amet, consectetur
+              adipiscit elit.</q-item-label
+            >
+          </q-item-section>
+          <q-item-section side top>
+            <q-item-label caption>45 min ago</q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-list>
+      <!-- Blog 3 Ended here -->
     </q-drawer>
 
     <q-page-container>
