@@ -1,21 +1,20 @@
 <template>
   <q-layout view="lHr lpR fFf">
 
-    <q-header bordered class="bg-primary text-white">
+    <q-header bordered class="bg-white text-black">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title>
+        <q-toolbar-title class="text-weight-bold">
 
           Twitter (X)
         </q-toolbar-title>
 
-        <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
       </q-toolbar>
     </q-header>
 
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-      <!-- drawer content -->
+      <q-icon name="accessibility" />
     </q-drawer>
 
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
