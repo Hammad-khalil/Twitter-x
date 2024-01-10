@@ -5,7 +5,13 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title class="text-weight-bold">
-          Twitter (X)
+          <span class="gt-sm"> Twitter (X) </span>
+          <q-icon
+            color="primary"
+            name="fa-brands fa-square-x-twitter"
+            class="q-pa-md lt-md header-icon"
+            size="md"
+          />
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -149,3 +155,11 @@ export default {
   },
 };
 </script>
+<style>
+.header-icon {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+</style>
