@@ -42,9 +42,17 @@
         </q-item>
       </q-list>
 
-      <!-- // Home Ends Here
+      <q-list>
+        <q-item clickable v-ripple to="/notifications" exact>
+          <q-item-section avatar>
+            <q-icon color="primary" name="notifications" />
+          </q-item-section>
+          <q-item-section class="text-h6 text-weight-bold" size="md"
+            >Notifications</q-item-section
+          >
+        </q-item>
+      </q-list>
 
-        // About here => -->
       <q-list>
         <q-item clickable v-ripple to="/about" exact>
           <q-item-section avatar>
