@@ -5,7 +5,7 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title class="text-weight-bold">
-          <span class="gt-sm"> Twitter (X) </span>
+          <span class="gt-sm"> {{ $route.name }} </span>
           <q-icon
             color="primary"
             name="fa-brands fa-square-x-twitter"
@@ -31,7 +31,7 @@
       />
       <!-- // Home here => -->
       <q-list>
-        <q-item clickable v-ripple to="/">
+        <q-item clickable v-ripple to="/" exact>
           <q-item-section avatar>
             <q-icon color="primary" name="home" />
           </q-item-section>
@@ -46,7 +46,7 @@
 
         // About here => -->
       <q-list>
-        <q-item clickable v-ripple to="/about">
+        <q-item clickable v-ripple to="/about" exact>
           <q-item-section avatar>
             <q-icon color="primary" name="info" />
           </q-item-section>
