@@ -147,6 +147,7 @@ export default defineComponent({
     deleteTweet(tweet) {
       let dateToDelete = tweet.date;
       let index = this.tweets.findIndex((tweet) => tweet.date === dateToDelete);
+      console.log(index);
       this.tweets.splice(index, 1);
     },
   },
