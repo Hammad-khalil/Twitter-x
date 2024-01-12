@@ -71,7 +71,7 @@
             />
             <q-btn flat round size="sm" color="grey" icon="fa-solid fa-heart" />
             <q-btn
-              @click="deleteTweet"
+              @click="deleteTweet(tweet)"
               flat
               round
               size="sm"
@@ -128,6 +128,7 @@ export default defineComponent({
         };
         this.tweets.unshift(addNewTweet);
       }
+      this.totalchar = "";
     },
 
     formatTimeAgo(timestamp) {
@@ -143,8 +144,10 @@ export default defineComponent({
         return `${differenceInMinutes} minutes ago`;
       }
     },
-    deleteTweet() {
-      this.tweets.shift();
+    deleteTweet(tweet) {
+      let dateToDelete = tweet.date;
+      let index = this.tweets.findIndex((tweet) => tweet.date === dateToDelete);
+      this.tweets.splice(index, 1);
     },
   },
 });
