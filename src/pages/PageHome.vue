@@ -23,6 +23,7 @@
       </div>
       <div class="col col-shrink">
         <q-btn
+          @click="addTweet"
           :disable="!totalchar"
           unelevated
           rounded
@@ -36,7 +37,7 @@
     <q-separator class="divider" size="10px" color="grey-2" />
 
     <q-list>
-      <q-item class="q-py-md">
+      <q-item class="q-py-md" v-for="tweet in tweets" :key="tweet.date">
         <q-item-section avatar top>
           <q-avatar size="xl">
             <img
@@ -51,13 +52,7 @@
             <span class="text-grey-7">@HammadkhalilShiekh</span>
           </q-item-label>
           <q-item-label class="x-tweet text-body1">
-            New X isn't just great, it's mind-blowing. Dive into immersive,
-            interactive content that bursts from the screen, let personalized AI
-            recommendations anticipate your needs, and use built-in tools to
-            create and share like never before. X is your passion playground, a
-            vibrant community where you connect with like-minded individuals and
-            push the boundaries of what's possible. New X isn't just a platform,
-            it's a game-changer waiting to unleash your full potential.
+            {{ tweet.content }}
           </q-item-label>
           <div class="tweet-icons row justify-between q-mt-sm">
             <q-btn
@@ -74,12 +69,21 @@
               color="grey"
               icon="fa-solid fa-retweet"
             />
-            <q-btn flat round size="sm" color="red" icon="fa-solid fa-heart" />
-            <q-btn flat round size="sm" color="grey" icon="fa-solid fa-trash" />
+            <q-btn flat round size="sm" color="grey" icon="fa-solid fa-heart" />
+            <q-btn
+              @click="deleteTweet"
+              flat
+              round
+              size="sm"
+              color="grey"
+              icon="fa-solid fa-trash"
+            />
           </div>
         </q-item-section>
 
-        <q-item-section side top> 1 min ago </q-item-section>
+        <q-item-section side top>
+          {{ tweet.date }}
+        </q-item-section>
       </q-item>
     </q-list>
   </q-page>
@@ -94,7 +98,54 @@ export default defineComponent({
     return {
       totalchar: "",
       checkText: "",
+      tweets: [
+        {
+          date: "2 hours ago",
+          content:
+            "New X isn't just great, it's mind-blowing. Dive into immersive,interactive content that bursts from the screen, let personalized AIrecommendations anticipate your needs, and use built-in tools tocreate and share like never before. X is your passion playground, avibrant community where you connect with like-minded individuals andpush the boundaries of what's possible. New X isn't just a platform,it's a game-changer waiting to unleash your full potential.",
+        },
+        {
+          date: "8 hours ago",
+          content:
+            "Explore the extraordinary with New X, a platform that transcends greatness and enters the realm of mind-blowing experiences. Immerse yourself in interactive content that leaps off the screen, enjoy personalized AI recommendations that anticipate your every desire, and leverage powerful built-in tools to craft and share like never before. New X is not just a platform; it's a revolutionary force, transforming into your passion playground and a dynamic community where you connect with kindred spirits to push the boundaries of what's achievable. Unleash your full potential with the game-changing New X.",
+        },
+        {
+          date: "22 hours ago",
+          content:
+            "Embark on a journey of unparalleled excellence with New X, an exceptional platform that goes beyond greatness to deliver awe-inspiring moments. Immerse yourself in an interactive world where content comes alive, indulge in personalized AI recommendations that understand your preferences, and utilize cutting-edge tools to create and share in unprecedented ways. New X isn't merely a platform; it stands as a paradigm shift, evolving into your playground of passion and a lively community where you engage with like-minded individuals, collectively pushing the limits of what can be achieved. Discover the transformative power of New X, poised to unlock your complete potential.",
+        },
+      ],
     };
+  },
+  methods: {
+    addTweet() {
+      const trimmedContent = this.totalchar.trim();
+
+      if (trimmedContent !== "") {
+        let addNewTweet = {
+          content: trimmedContent,
+          date: this.formatTimeAgo(Date.now()),
+        };
+        this.tweets.unshift(addNewTweet);
+      }
+    },
+
+    formatTimeAgo(timestamp) {
+      const now = Date.now();
+      const differenceInMilliseconds = now - timestamp;
+      const differenceInMinutes = Math.floor(differenceInMilliseconds / 60000);
+
+      if (differenceInMinutes < 1) {
+        return "Just now";
+      } else if (differenceInMinutes === 1) {
+        return "1 minute ago";
+      } else {
+        return `${differenceInMinutes} minutes ago`;
+      }
+    },
+    deleteTweet() {
+      this.tweets.shift();
+    },
   },
 });
 </script>
