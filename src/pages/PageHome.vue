@@ -29,9 +29,11 @@
           color="primary"
           label="Tweet"
           no-caps
+          class="q-mb-lg"
         />
       </div>
     </div>
+    <q-separator class="divider" size="10px" color="grey-2" />
   </q-page>
 </template>
 
@@ -53,5 +55,10 @@ export default defineComponent({
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
   line-height: 1.4 !important;
+}
+.divider {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: rgb(224, 224, 224);
 }
 </style>
