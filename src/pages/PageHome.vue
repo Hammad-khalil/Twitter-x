@@ -1,4 +1,8 @@
 <template>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
   <q-page>
     <div class="q-py-lg q-px-md row items-end q-gutter-sm">
       <div class="col">
@@ -35,61 +39,73 @@
       </div>
     </div>
     <q-separator class="divider" size="10px" color="grey-2" />
+    <transition-group
+      appear
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
+    >
+      <q-list class="list-items">
+        <q-item class="q-py-md" v-for="tweet in tweets" :key="tweet.date">
+          <q-item-section avatar top>
+            <q-avatar size="xl">
+              <img
+                src="https://avatars.githubusercontent.com/u/143031265?s=400&u=94d880598a0efaa8d66727251d8c9d0a058e0be1&v=4"
+              />
+            </q-avatar>
+          </q-item-section>
 
-    <q-list>
-      <q-item class="q-py-md" v-for="tweet in tweets" :key="tweet.date">
-        <q-item-section avatar top>
-          <q-avatar size="xl">
-            <img
-              src="https://avatars.githubusercontent.com/u/143031265?s=400&u=94d880598a0efaa8d66727251d8c9d0a058e0be1&v=4"
-            />
-          </q-avatar>
-        </q-item-section>
+          <q-item-section>
+            <q-item-label class="text-subtitle1">
+              <strong>Hammad Khalil</strong>
+              <span class="text-grey-7">@HammadkhalilShiekh</span>
+            </q-item-label>
+            <q-item-label class="x-tweet text-body1">
+              {{ tweet.content }}
+            </q-item-label>
+            <div class="tweet-icons row justify-between q-mt-sm">
+              <q-btn
+                flat
+                round
+                size="sm"
+                color="grey"
+                icon="fa-solid fa-comment"
+              />
+              <q-btn
+                flat
+                round
+                size="sm"
+                color="grey"
+                icon="fa-solid fa-retweet"
+              />
+              <q-btn
+                flat
+                round
+                size="sm"
+                color="grey"
+                icon="fa-solid fa-heart"
+              />
+              <q-btn
+                @click="deleteTweet(tweet)"
+                flat
+                round
+                size="sm"
+                color="grey"
+                icon="fa-solid fa-trash"
+              />
+            </div>
+          </q-item-section>
 
-        <q-item-section>
-          <q-item-label class="text-subtitle1">
-            <strong>Hammad Khalil</strong>
-            <span class="text-grey-7">@HammadkhalilShiekh</span>
-          </q-item-label>
-          <q-item-label class="x-tweet text-body1">
-            {{ tweet.content }}
-          </q-item-label>
-          <div class="tweet-icons row justify-between q-mt-sm">
-            <q-btn
-              flat
-              round
-              size="sm"
-              color="grey"
-              icon="fa-solid fa-comment"
-            />
-            <q-btn
-              flat
-              round
-              size="sm"
-              color="grey"
-              icon="fa-solid fa-retweet"
-            />
-            <q-btn flat round size="sm" color="grey" icon="fa-solid fa-heart" />
-            <q-btn
-              @click="deleteTweet(tweet)"
-              flat
-              round
-              size="sm"
-              color="grey"
-              icon="fa-solid fa-trash"
-            />
-          </div>
-        </q-item-section>
-
-        <q-item-section side top>
-          {{ tweet.date }}
-        </q-item-section>
-      </q-item>
-    </q-list>
+          <q-item-section side top>
+            {{ tweet.date }}
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </transition-group>
   </q-page>
 </template>
 
 <script>
+import "animate.css";
 import { defineComponent } from "vue";
 
 export default defineComponent({
