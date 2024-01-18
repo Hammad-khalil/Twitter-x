@@ -1,7 +1,14 @@
-import { boot } from 'quasar/wrappers'
+import firebase from "firebase/app";
+import { initializeApp } from 'firebase/app';
+import "firebase/firestore"
 
-// "async" is optional;
-// more info on params: https://v2.quasar.dev/quasar-cli/boot-files
-export default boot(async (/* { app, router, ... } */) => {
-  // something to do
-})
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDdHvZEIMQHUekSa043KyBsrmxGX1GGEkQ",
+  authDomain: "twitterbackend-278e2.firebaseapp.com",
+  projectId: "twitterbackend-278e2",
+  storageBucket: "twitterbackend-278e2.appspot.com",
+  messagingSenderId: "301486240033",
+  appId: "1:301486240033:web:45bbc6bbf43210bdc34e60"
+};
