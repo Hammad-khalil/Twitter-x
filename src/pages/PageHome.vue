@@ -105,10 +105,10 @@
 </template>
 
 <script>
-import "animate.css";
 import { defineComponent } from "vue";
-import db from "src/boot/firebase";
+import db from "boot/firebase";
 
+console.log(db);
 export default defineComponent({
   name: "PageHome",
   data() {
@@ -116,21 +116,21 @@ export default defineComponent({
       totalchar: "",
       checkText: "",
       tweets: [
-        {
-          date: "2 hours ago",
-          content:
-            "New X isn't just great, it's mind-blowing. Dive into immersive,interactive content that bursts from the screen, let personalized AIrecommendations anticipate your needs, and use built-in tools tocreate and share like never before. X is your passion playground, avibrant community where you connect with like-minded individuals andpush the boundaries of what's possible. New X isn't just a platform,it's a game-changer waiting to unleash your full potential.",
-        },
-        {
-          date: "8 hours ago",
-          content:
-            "Explore the extraordinary with New X, a platform that transcends greatness and enters the realm of mind-blowing experiences. Immerse yourself in interactive content that leaps off the screen, enjoy personalized AI recommendations that anticipate your every desire, and leverage powerful built-in tools to craft and share like never before. New X is not just a platform; it's a revolutionary force, transforming into your passion playground and a dynamic community where you connect with kindred spirits to push the boundaries of what's achievable. Unleash your full potential with the game-changing New X.",
-        },
-        {
-          date: "22 hours ago",
-          content:
-            "Embark on a journey of unparalleled excellence with New X, an exceptional platform that goes beyond greatness to deliver awe-inspiring moments. Immerse yourself in an interactive world where content comes alive, indulge in personalized AI recommendations that understand your preferences, and utilize cutting-edge tools to create and share in unprecedented ways. New X isn't merely a platform; it stands as a paradigm shift, evolving into your playground of passion and a lively community where you engage with like-minded individuals, collectively pushing the limits of what can be achieved. Discover the transformative power of New X, poised to unlock your complete potential.",
-        },
+        // {
+        //   date: "2 hours ago",
+        //   content:
+        //     "New X isn't just great, it's mind-blowing. Dive into immersive,interactive content that bursts from the screen, let personalized AIrecommendations anticipate your needs, and use built-in tools tocreate and share like never before. X is your passion playground, avibrant community where you connect with like-minded individuals andpush the boundaries of what's possible. New X isn't just a platform,it's a game-changer waiting to unleash your full potential.",
+        // },
+        // {
+        //   date: "8 hours ago",
+        //   content:
+        //     "Explore the extraordinary with New X, a platform that transcends greatness and enters the realm of mind-blowing experiences. Immerse yourself in interactive content that leaps off the screen, enjoy personalized AI recommendations that anticipate your every desire, and leverage powerful built-in tools to craft and share like never before. New X is not just a platform; it's a revolutionary force, transforming into your passion playground and a dynamic community where you connect with kindred spirits to push the boundaries of what's achievable. Unleash your full potential with the game-changing New X.",
+        // },
+        // {
+        //   date: "22 hours ago",
+        //   content:
+        //     "Embark on a journey of unparalleled excellence with New X, an exceptional platform that goes beyond greatness to deliver awe-inspiring moments. Immerse yourself in an interactive world where content comes alive, indulge in personalized AI recommendations that understand your preferences, and utilize cutting-edge tools to create and share in unprecedented ways. New X isn't merely a platform; it stands as a paradigm shift, evolving into your playground of passion and a lively community where you engage with like-minded individuals, collectively pushing the limits of what can be achieved. Discover the transformative power of New X, poised to unlock your complete potential.",
+        // },
       ],
     };
   },
@@ -167,6 +167,21 @@ export default defineComponent({
       console.log(index);
       this.tweets.splice(index, 1);
     },
+  },
+  mounted() {
+    db.collection("tweets").onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          console.log("New tweet: ", change.doc.data());
+        }
+        if (change.type === "modified") {
+          console.log("Modified tweet: ", change.doc.data());
+        }
+        if (change.type === "removed") {
+          console.log("Removed tweet: ", change.doc.data());
+        }
+      });
+    });
   },
 });
 </script>
