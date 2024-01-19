@@ -107,6 +107,7 @@
 <script>
 import "animate.css";
 import { defineComponent } from "vue";
+import db from "src/boot/firebase";
 
 export default defineComponent({
   name: "PageHome",
