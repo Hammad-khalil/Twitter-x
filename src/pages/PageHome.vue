@@ -168,19 +168,32 @@ export default defineComponent({
     },
   },
   mounted() {
-    db.collection("tweets").onSnapshot((snapshot) => {
-      snapshot.docChanges().forEach((change) => {
-        if (change.type === "added") {
-          console.log("New tweet: ", change.doc.data());
-        }
-        if (change.type === "modified") {
-          console.log("Modified tweet: ", change.doc.data());
-        }
-        if (change.type === "removed") {
-          console.log("Removed tweet: ", change.doc.data());
-        }
+    db.collection("tweets")
+      .orderBy("date")
+      .onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          let tweetChange = change.doc.data();
+          tweetChange.id = change.doc.id;
+          if (change.type === "added") {
+            console.log("New tweet: ", tweetChange);
+            this.tweets.unshift(tweetChange);
+          }
+          if (change.type === "modified") {
+            console.log("Modified tweet: ", tweetChange);
+            let index = this.tweets.findIndex(
+              (tweet) => tweet.id === tweetChange.id
+            );
+            Object.assign(this.tweets[index], tweetChange);
+          }
+          if (change.type === "removed") {
+            console.log("Removed tweet: ", tweetChange);
+            let index = this.tweets.findIndex(
+              (tweet) => tweet.id === tweetChange.id
+            );
+            this.tweets.splice(index, 1);
+          }
+        });
       });
-    });
   },
 });
 </script>
