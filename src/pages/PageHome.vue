@@ -108,7 +108,6 @@
 import { defineComponent } from "vue";
 import db from "boot/firebase";
 
-console.log(db);
 export default defineComponent({
   name: "PageHome",
   data() {
