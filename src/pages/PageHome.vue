@@ -1,3 +1,6 @@
+I apologize for the confusion. Here's your complete modified code with the changes included:
+
+```html
 <template>
   <link
     rel="stylesheet"
@@ -96,7 +99,7 @@
           </q-item-section>
 
           <q-item-section side top>
-            {{ tweet.date }}
+            {{ formatTimeAgo(tweet.date) }}
           </q-item-section>
         </q-item>
       </q-list>
@@ -116,17 +119,17 @@ export default defineComponent({
       checkText: "",
       tweets: [
         // {
-        //   date: "2 hours ago",
+        //   date: 1705606043026,
         //   content:
         //     "New X isn't just great, it's mind-blowing. Dive into immersive,interactive content that bursts from the screen, let personalized AIrecommendations anticipate your needs, and use built-in tools tocreate and share like never before. X is your passion playground, avibrant community where you connect with like-minded individuals andpush the boundaries of what's possible. New X isn't just a platform,it's a game-changer waiting to unleash your full potential.",
         // },
         // {
-        //   date: "8 hours ago",
+        //   date: 1705606043026,
         //   content:
         //     "Explore the extraordinary with New X, a platform that transcends greatness and enters the realm of mind-blowing experiences. Immerse yourself in interactive content that leaps off the screen, enjoy personalized AI recommendations that anticipate your every desire, and leverage powerful built-in tools to craft and share like never before. New X is not just a platform; it's a revolutionary force, transforming into your passion playground and a dynamic community where you connect with kindred spirits to push the boundaries of what's achievable. Unleash your full potential with the game-changing New X.",
         // },
         // {
-        //   date: "22 hours ago",
+        //   date: 1705606043026,
         //   content:
         //     "Embark on a journey of unparalleled excellence with New X, an exceptional platform that goes beyond greatness to deliver awe-inspiring moments. Immerse yourself in an interactive world where content comes alive, indulge in personalized AI recommendations that understand your preferences, and utilize cutting-edge tools to create and share in unprecedented ways. New X isn't merely a platform; it stands as a paradigm shift, evolving into your playground of passion and a lively community where you engage with like-minded individuals, collectively pushing the limits of what can be achieved. Discover the transformative power of New X, poised to unlock your complete potential.",
         // },
@@ -140,7 +143,7 @@ export default defineComponent({
       if (trimmedContent !== "") {
         let addNewTweet = {
           content: trimmedContent,
-          date: this.formatTimeAgo(Date.now()),
+          date: Date.now(),
         };
         this.tweets.unshift(addNewTweet);
       }
@@ -150,14 +153,19 @@ export default defineComponent({
     formatTimeAgo(timestamp) {
       const now = Date.now();
       const differenceInMilliseconds = now - timestamp;
-      const differenceInMinutes = Math.floor(differenceInMilliseconds / 60000);
+      const differenceInHours = Math.floor(differenceInMilliseconds / 3600000);
 
-      if (differenceInMinutes < 1) {
-        return "Just now";
-      } else if (differenceInMinutes === 1) {
-        return "1 minute ago";
+      if (differenceInHours < 1) {
+        const differenceInMinutes = Math.floor(
+          differenceInMilliseconds / 60000
+        );
+        return `${differenceInMinutes} minute${
+          differenceInMinutes === 1 ? "" : "s"
+        } ago`;
+      } else if (differenceInHours === 1) {
+        return "1 hour ago";
       } else {
-        return `${differenceInMinutes} minutes ago`;
+        return `${differenceInHours} hours ago`;
       }
     },
     deleteTweet(tweet) {
@@ -197,6 +205,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style>
 .newTweet textarea {
   font-family: Arial, Helvetica, sans-serif;
@@ -215,3 +224,6 @@ export default defineComponent({
   margin-left: -5px;
 }
 </style>
+```
+
+You can now copy and paste this code into your Vue component. If you have any further questions or concerns, feel free to ask!
